@@ -20,9 +20,11 @@
   },
   "homepage": "https://github.com/Foohx/acceslibre-client#readme",
   "devDependencies": {
+    "@types/qs": "^6.9.7",
     "typescript": "^4.7.3"
   },
   "dependencies": {
-    "axios": "^0.27.2"
+    "axios": "^0.27.2",
+    "qs": "^6.10.5"
   }
 }
