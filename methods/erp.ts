@@ -1,6 +1,6 @@
 import axios from "axios";
 import qs from "qs";
-import { IErpPaginate } from "../types";
+import { IErp, IErpPaginate } from "../types";
 import { BASE_URL } from "../utils";
 
 interface IErpsOptions {
@@ -42,7 +42,7 @@ export async function getErps(query: IErpsOptions = {}) {
 
 /* Permet de récupérer les données d'un ERP spécifique, par le biais de son slug */
 export async function readErp(slug: string) {
-  const r = await axios.get<IErpPaginate>(`${BASE_URL}/erps/${slug}`, {
+  const r = await axios.get<IErp>(`${BASE_URL}/erps/${slug}/`, {
     headers: {
       "Content-Type": "application/json",
     },
