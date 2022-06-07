@@ -28,6 +28,7 @@ interface IErpsOptions {
   around?: string;
 }
 
+/** Permer de récupérer une liste d'ERP. */
 export async function getErps(query: IErpsOptions = {}) {
   const r = await axios.get<IErpPaginate>(`${BASE_URL}/erps/`, {
     headers: {
@@ -39,6 +40,7 @@ export async function getErps(query: IErpsOptions = {}) {
   return r.data;
 }
 
+/* Permet de récupérer les données d'un ERP spécifique, par le biais de son slug */
 export async function readErp(slug: string) {
   const r = await axios.get<IErpPaginate>(`${BASE_URL}/erps/${slug}`, {
     headers: {
