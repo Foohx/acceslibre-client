@@ -1,0 +1,25 @@
+{
+  "name": "acceslibre-client",
+  "version": "1.0.0",
+  "description": "A very simple API client for AccesLibre",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Foohx/acceslibre-client.git"
+  },
+  "keywords": [],
+  "author": "Foohx",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Foohx/acceslibre-client/issues"
+  },
+  "homepage": "https://github.com/Foohx/acceslibre-client#readme",
+  "devDependencies": {
+    "typescript": "^4.7.3"
+  }
+}
