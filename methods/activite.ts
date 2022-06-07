@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IActivite, IActivitePaginate, IErpPaginate } from "../types";
+import { IActivite, IActivitePaginate } from "../types";
 import { BASE_URL } from "../utils";
 
 interface IActiviteOptions {
