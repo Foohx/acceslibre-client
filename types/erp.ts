@@ -1,4 +1,4 @@
-import { Paginate } from "./utilities";
+import { Paginate } from "../utils";
 
 export interface IErp {
   url: string;
