@@ -21,5 +21,8 @@
   "homepage": "https://github.com/Foohx/acceslibre-client#readme",
   "devDependencies": {
     "typescript": "^4.7.3"
+  },
+  "dependencies": {
+    "axios": "^0.27.2"
   }
 }
