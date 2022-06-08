@@ -1,6 +1,6 @@
 import axios from "axios";
 import { IAccessibilite, IAccessibilitePaginate } from "../types";
-import { BASE_URL } from "../utils";
+import { API_URL } from "../utils";
 
 interface IAccessibiliteOptions {
   /** A page number within the paginated result set. */
@@ -14,7 +14,7 @@ interface IAccessibiliteOptions {
 /** Permer de récupérer une liste d'ERP. */
 export async function getAccessibilites(query: IAccessibiliteOptions = {}) {
   const r = await axios.get<IAccessibilitePaginate>(
-    `${BASE_URL}/accessibilite/`,
+    `${API_URL}/accessibilite/`,
     {
       headers: {
         "Content-Type": "application/json",
@@ -28,14 +28,11 @@ export async function getAccessibilites(query: IAccessibiliteOptions = {}) {
 
 /* Permet de récupérer les données d'un ERP spécifique, par le biais de son id */
 export async function readAccessibilite(id: string) {
-  const r = await axios.get<IAccessibilite>(
-    `${BASE_URL}/accessibilite/${id}/`,
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  const r = await axios.get<IAccessibilite>(`${API_URL}/accessibilite/${id}/`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
   return r.data;
 }
