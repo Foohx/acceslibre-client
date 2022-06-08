@@ -1,7 +1,6 @@
 import axios from "axios";
-import qs from "qs";
 import { IErp, IErpPaginate } from "../types";
-import { BASE_URL } from "../utils";
+import { API_URL } from "../utils";
 
 interface IErpsOptions {
   /** A page number within the paginated result set. */
@@ -30,7 +29,7 @@ interface IErpsOptions {
 
 /** Permer de récupérer une liste d'ERP. */
 export async function getErps(query: IErpsOptions = {}) {
-  const r = await axios.get<IErpPaginate>(`${BASE_URL}/erps/`, {
+  const r = await axios.get<IErpPaginate>(`${API_URL}/erps/`, {
     headers: {
       "Content-Type": "application/json",
     },
@@ -42,7 +41,7 @@ export async function getErps(query: IErpsOptions = {}) {
 
 /* Permet de récupérer les données d'un ERP spécifique, par le biais de son slug */
 export async function readErp(slug: string) {
-  const r = await axios.get<IErp>(`${BASE_URL}/erps/${slug}/`, {
+  const r = await axios.get<IErp>(`${API_URL}/erps/${slug}/`, {
     headers: {
       "Content-Type": "application/json",
     },

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { IActivite, IActivitePaginate } from "../types";
-import { BASE_URL } from "../utils";
+import { API_URL } from "../utils";
 
 interface IActiviteOptions {
   /** A page number within the paginated result set. */
@@ -11,7 +11,7 @@ interface IActiviteOptions {
 
 /** Permer de récupérer une liste d'activités. */
 export async function getActivites(query: IActiviteOptions = {}) {
-  const r = await axios.get<IActivitePaginate>(`${BASE_URL}/activites/`, {
+  const r = await axios.get<IActivitePaginate>(`${API_URL}/activites/`, {
     headers: {
       "Content-Type": "application/json",
     },
@@ -23,7 +23,7 @@ export async function getActivites(query: IActiviteOptions = {}) {
 
 /* Permet de récupérer les données d'une activité spécifique, par le biais de son slug */
 export async function readActivite(slug: string) {
-  const r = await axios.get<IActivite>(`${BASE_URL}/activites/${slug}/`, {
+  const r = await axios.get<IActivite>(`${API_URL}/activites/${slug}/`, {
     headers: {
       "Content-Type": "application/json",
     },
