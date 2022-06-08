@@ -1,6 +1,6 @@
 {
   "name": "acceslibre-client",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A very simple API client for AccesLibre",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
