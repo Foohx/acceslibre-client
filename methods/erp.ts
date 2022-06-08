@@ -29,23 +29,29 @@ interface IErpsOptions {
 
 /** Permer de récupérer une liste d'ERP. */
 export async function getErps(query: IErpsOptions = {}) {
-  const r = await axios.get<IErpPaginate>(`${API_URL}/erps/`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    params: query,
-  });
-
-  return r.data;
+  try {
+    const r = await axios.get<IErpPaginate>(`${API_URL}/erps/`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      params: query,
+    });
+    return r.data;
+  } catch (error) {
+    return null;
+  }
 }
 
 /* Permet de récupérer les données d'un ERP spécifique, par le biais de son slug */
 export async function readErp(slug: string) {
-  const r = await axios.get<IErp>(`${API_URL}/erps/${slug}/`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  return r.data;
+  try {
+    const r = await axios.get<IErp>(`${API_URL}/erps/${slug}/`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return r.data;
+  } catch (error) {
+    return null;
+  }
 }

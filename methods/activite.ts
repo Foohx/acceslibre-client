@@ -11,23 +11,29 @@ interface IActiviteOptions {
 
 /** Permer de récupérer une liste d'activités. */
 export async function getActivites(query: IActiviteOptions = {}) {
-  const r = await axios.get<IActivitePaginate>(`${API_URL}/activites/`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    params: query,
-  });
-
-  return r.data;
+  try {
+    const r = await axios.get<IActivitePaginate>(`${API_URL}/activites/`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      params: query,
+    });
+    return r.data;
+  } catch (error) {
+    return null;
+  }
 }
 
 /* Permet de récupérer les données d'une activité spécifique, par le biais de son slug */
 export async function readActivite(slug: string) {
-  const r = await axios.get<IActivite>(`${API_URL}/activites/${slug}/`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  return r.data;
+  try {
+    const r = await axios.get<IActivite>(`${API_URL}/activites/${slug}/`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return r.data;
+  } catch (error) {
+    return null;
+  }
 }

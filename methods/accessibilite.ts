@@ -13,26 +13,35 @@ interface IAccessibiliteOptions {
 
 /** Permer de récupérer une liste d'ERP. */
 export async function getAccessibilites(query: IAccessibiliteOptions = {}) {
-  const r = await axios.get<IAccessibilitePaginate>(
-    `${API_URL}/accessibilite/`,
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      params: query,
-    }
-  );
-
-  return r.data;
+  try {
+    const r = await axios.get<IAccessibilitePaginate>(
+      `${API_URL}/accessibilite/`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        params: query,
+      }
+    );
+    return r.data;
+  } catch (error) {
+    return null;
+  }
 }
 
 /* Permet de récupérer les données d'un ERP spécifique, par le biais de son id */
 export async function readAccessibilite(id: string) {
-  const r = await axios.get<IAccessibilite>(`${API_URL}/accessibilite/${id}/`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  return r.data;
+  try {
+    const r = await axios.get<IAccessibilite>(
+      `${API_URL}/accessibilite/${id}/`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return r.data;
+  } catch (error) {
+    return null;
+  }
 }
