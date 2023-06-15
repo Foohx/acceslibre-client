@@ -21,25 +21,29 @@ En utilisant yarn:
 Node.js :
 
 ```javascript
-const { getErps } = require("acceslibre-client");
+const { getEstablishments } = require("acceslibre-client");
+
+const API_KEY = "YOUR_KEY"
 
 (async () => {
-  const erps = await getErps({ page: 1 });
+  const erps = await getEstablishments(API_KEY, { page: 1 });
 )
 ```
 
 React (Js) :
 
 ```js
-import { getErps } from "acceslibre-client";
+import { getEstablishments } from "acceslibre-client";
 import { useEffect, useState } from "react";
+
+const API_KEY = "YOUR_KEY";
 
 function App() {
   const [erps, setErps] = useState(undefined);
 
   useEffect(() => {
     (async () => {
-      const erps = await getErps();
+      const erps = await getEstablishments(API_KEY);
       setErps(erps);
     })();
   }, []);
@@ -78,25 +82,25 @@ export default App;
 Obtenir une liste d'activités d'ERP :
 
 ```ts
-const activities = await getActivites();
+const activities = await getActivities(API_KEY);
 ```
 
 Obtenir une activité particulière par le biais de son slug :
 
 ```ts
-const activity = await readActivite("accessoires");
+const activity = await readActivity(API_KEY, "accessoires");
 ```
 
 Demander une page spécifique d'une liste d'activités :
 
 ```ts
-const activities = await getActivites({ page: 2 });
+const activities = await getActivities(API_KEY, { page: 2 });
 ```
 
 Récupérer la activités de l'ensemble des ERP de la ville de Bordeaux :
 
 ```ts
-const activities = await getActivities({ commune: "Bordeaux" });
+const activities = await getActivities(API_KEY, { commune: "Bordeaux" });
 ```
 
 ### ERPs :
@@ -106,31 +110,31 @@ const activities = await getActivities({ commune: "Bordeaux" });
 Obtenir une liste d'ERP :
 
 ```ts
-const erps = await getErps();
+const erps = await getEstablishments(API_KEY);
 ```
 
 Obtenir un ERP en particulier par le biais de son slug :
 
 ```ts
-const erp = await readErp("acdp-formation-82");
+const erp = await readEstablishment(API_KEY, "acdp-formation-82");
 ```
 
 Demander une page spécifique d'une liste d'ERP :
 
 ```ts
-const erps = await getErps({ page: 2 });
+const erps = await getEstablishments(API_KEY, { page: 2 });
 ```
 
 Rechercher les ERPs contenant le terme "impôts" dans leur nom ou activité :
 
 ```ts
-const erps = await getErps({ q: "impôts" });
+const erps = await getEstablishments(API_KEY, { q: "impôts" });
 ```
 
 Récupérer les ERPs de la ville de Bordeaux :
 
 ```ts
-const erps = await getErps({ commune: "Bordeaux" });
+const erps = await getEstablishments(API_KEY, { commune: "Bordeaux" });
 ```
 
 La liste complète des paramètres de `getErps()` est disponible dans la [Documentation de l'API](https://acceslibre.beta.gouv.fr/api/docs/).
@@ -142,19 +146,19 @@ La liste complète des paramètres de `getErps()` est disponible dans la [Docume
 Obtenir une liste des critères d'accessibilité de plusieurs ERPs :
 
 ```ts
-const erpsRequirements = await getAccessibilites();
+const erpsRequirements = await getAccessibilites(API_KEY);
 ```
 
 Obtenir les critères d'accessibilité d'un ERP spécifique en utilisant le slug d'un critère :
 
 ```ts
-const requirements = await readAccessibilite("1234");
+const requirements = await readAccessibilite(API_KEY, "1234");
 ```
 
 Demander une page spécifique d'une liste des critères d'accessibilité d'ERPs :
 
 ```ts
-const erpsRequirements = await getAccessibilites({ page: 1 });
+const erpsRequirements = await getAccessibilites(API_KEY, { page: 1 });
 ```
 
 ### Utilitaires :
@@ -164,10 +168,12 @@ Les utilitaires sont disponibles dans `acceslibre-client/dist/utils`.
 La méthode `readAccessibilite()` a besoin d'un `id` que vous pouvez récupérer dans l'url disponible via la propriété `accessibilite` du type `IErp`.
 
 ```ts
-import { IErp, readErp, readAccessibilite } from "acceslibre-client";
-import { extractAccessibiliteSlugFromApiUrl } from "acceslibre-client/dist/utils";
+import { IEstablishment readEstablishment, readAccessibility } from "acceslibre-client";
+import { extractAccessibilitiesSlugFromApiUrl } from "acceslibre-client/dist/utils";
 
-const erp: IErp | null = await readErp("erp-slug");
+const API_KEY = "YOUR_KEY"
+
+const erp: IEstablishment | null = await readEstablishment("erp-slug");
 if (erp !== null) {
   const requirementsId = extractAccessibiliteSlugFromApiUrl(erp.accessibilite);
   if (requirementsId !== null) {

@@ -3,13 +3,13 @@ import { urlRemoveQueryStrings } from "./url";
 
 /**
  * Checks if a URL has the format of a valid Accessibilite api url.
- * (eg. `https://acceslibre.beta.gouv.fr/api/accessibilite/16234/`)
+ * (eg. `https://acceslibre.beta.gouv.fr/api/accessibilite/132735/`)
  *
  * @param {string} url - The URL to validate.
  *
  * @returns A boolean.
  */
-export function isValidAccessibiliteApiUrl(url: string): boolean {
+export function isValidAccessibilityApiUrl(url: string): boolean {
   let u: string = url.trim();
   if (!u.startsWith(API_URL)) {
     return false;
@@ -26,14 +26,14 @@ export function isValidAccessibiliteApiUrl(url: string): boolean {
 }
 
 /**
- * Extract the slug from the api url of an Accessibilite.
+ * Extract the slug from the api url of an Accessibility.
  *
  * @param {string} url - The URL to extract the slug from.
  *
  * @returns The slug of the Accessibilite or null if not found.
  */
 export function extractAccessibiliteSlugFromApiUrl(url: string): string | null {
-  if (!isValidAccessibiliteApiUrl(url)) {
+  if (!isValidAccessibilityApiUrl(url)) {
     return null;
   }
 

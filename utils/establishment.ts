@@ -9,7 +9,7 @@ import { urlRemoveQueryStrings } from "./url";
  *
  * @returns A boolean.
  */
-export function isValidErpUrl(url: string): boolean {
+export function isValidEstablishmentUrl(url: string): boolean {
   let u: string = url.trim();
   if (!u.startsWith(BASE_URL)) {
     return false;
@@ -32,8 +32,8 @@ export function isValidErpUrl(url: string): boolean {
  *
  * @returns The slug of the ERP or null if not found.
  */
-export function extractErpSlugFromUrl(url: string): string | null {
-  if (!isValidErpUrl(url)) {
+export function extractEstablishmentSlugFromUrl(url: string): string | null {
+  if (!isValidEstablishmentUrl(url)) {
     return null;
   }
 

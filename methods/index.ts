@@ -1,3 +1,3 @@
-export * from "./accessibilite";
-export * from "./activite";
-export * from "./erp";
+export * from "./accessibility";
+export * from "./activity";
+export * from "./establishment";

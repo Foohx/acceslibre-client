@@ -1,10 +1,12 @@
 import axios from "axios";
-import { IErp, IErpPaginate } from "../types";
 import { API_URL } from "../utils";
+import { IEstablishment, IPaginateEstablishments } from "../types";
 
 interface IErpsOptions {
   /** A page number within the paginated result set. */
   page?: number;
+  /** Number of results to return per page. */
+  page_size?: number;
   /** Termes de recherche */
   q?: string;
   /** Nom de la commune (ex. Clichy) */
@@ -21,18 +23,20 @@ interface IErpsOptions {
   source?: string;
   /** ID unique fourni par un fournisseur tier */
   source_id?: string;
+  asp_id?: string;
   /** Identifiant unique OpenData */
   uuid?: string;
   /** Biais de localisation géographique, au format `latitude,longitude` (par ex. `43.22,3.83`) */
   around?: string;
 }
 
-/** Permer de récupérer une liste d'ERP. */
-export async function getErps(query: IErpsOptions = {}) {
+/** List of establishments. */
+export async function getEstablishments(key: string, query: IErpsOptions = {}) {
   try {
-    const r = await axios.get<IErpPaginate>(`${API_URL}/erps/`, {
+    const r = await axios.get<IPaginateEstablishments>(`${API_URL}/erps/`, {
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Api-Key ${key}`,
       },
       params: query,
     });
@@ -42,12 +46,13 @@ export async function getErps(query: IErpsOptions = {}) {
   }
 }
 
-/* Permet de récupérer les données d'un ERP spécifique, par le biais de son slug */
-export async function readErp(slug: string) {
+/* Retrieve data from a specific establishment. */
+export async function readEstablishment(key: string, slug: string) {
   try {
-    const r = await axios.get<IErp>(`${API_URL}/erps/${slug}/`, {
+    const r = await axios.get<IEstablishment>(`${API_URL}/erps/${slug}/`, {
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Api-Key ${key}`,
       },
     });
     return r.data;

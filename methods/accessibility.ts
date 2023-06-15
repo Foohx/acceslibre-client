@@ -1,42 +1,43 @@
 import axios from "axios";
-import { IAccessibilite, IAccessibilitePaginate } from "../types";
 import { API_URL } from "../utils";
+import { IAccessibility, IPaginateAccessibilities } from "../types";
 
-interface IAccessibiliteOptions {
+interface IAccessibilityOptions {
   /** A page number within the paginated result set. */
   page?: number;
-  /** Écarter les valeurs nulles ou non-renseignées */
-  // clean?: boolean
-  /** Formater les données d'accessibilité pour une lecture humaine */
-  // readable?: boolean;
+  /** Number of results to return per page. */
+  page_size?: number;
 }
 
-/** Permer de récupérer une liste d'ERP. */
-export async function getAccessibilites(query: IAccessibiliteOptions = {}) {
+/** Lists the accessibility criteria for establishments. */
+export async function getAccessibilites(
+  key: string,
+  query: IAccessibilityOptions = {}
+) {
   try {
-    const r = await axios.get<IAccessibilitePaginate>(
+    const r = await axios.get<IPaginateAccessibilities>(
       `${API_URL}/accessibilite/`,
       {
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Api-Key ${key}`,
         },
         params: query,
       }
     );
     return r.data;
-  } catch (error) {
-    return null;
-  }
+  } catch (error) {}
 }
 
 /* Permet de récupérer les données d'un ERP spécifique, par le biais de son id */
-export async function readAccessibilite(id: string) {
+export async function readAccessibility(key: string, id: string) {
   try {
-    const r = await axios.get<IAccessibilite>(
+    const r = await axios.get<IAccessibility>(
       `${API_URL}/accessibilite/${id}/`,
       {
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Api-Key ${key}`,
         },
       }
     );
